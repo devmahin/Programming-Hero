@@ -1,0 +1,42 @@
+
+input[type="password"]{
+    color: red;
+}
+.blog1{
+    background-color: aqua;
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+    border: 10px solid;
+    border-radius: 10px;
+    padding: 10px;
+    background-image: url("download.jfif");
+    background-repeat: no-repeat;
+    /* background-repeat: repeat-y;
+    background-repeat: repeat-x; */
+    background-size: contain;
+    /* background-size: 500px; */
+    /* background-size: 500px; */
+}
+.blog2{
+    background-color: aqua;
+    margin: 10px 10px 10px 10px;
+    text-align: justify;
+    border: 10px solid;
+    padding: 10px;
+    background-image: url("download.jfif");
+    background-repeat: no-repeat;
+    /* background-repeat: repeat-y;
+    background-repeat: repeat-x; */
+    /* background-size: contain; */
+    /* background-size: 500px; */
+    /* background-size: 500px; */
+}
+h3{
+    text-decoration: line-through;
+}
+span{
+    color: rebeccapurple;
+    border: 2px solid red;
+    display: inline-block;
+    padding: 0 5px;
+}
