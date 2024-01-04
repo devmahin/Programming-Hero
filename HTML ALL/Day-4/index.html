@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            padding: 100px;
+        }
+        header>nav>ul{
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        li{
+            list-style: none;
+        }
+        a{
+            text-decoration: none;
+            font-size: 20px;
+        }
+        main>section{
+            text-align: center;
+        }
+        main>section>h1{
+            padding: 10px 0px;
+        }
+        main>section>p{
+            text-align: justify;
+        }
+        footer{
+            text-align: center;
+            font-weight: bold;
+        }
+    
+
+
+        /* nastel menu styles */
+        nav li>.dropdown{
+            display: none;
+            position: absolute;
+            background-color: rgb(240, 229, 18) ;
+            padding: 10px;
+        }
+        nav li ul li a{
+            color: black;
+        }
+        nav li ul li a:hover{
+            color: rgb(16, 4, 255);
+        }
+        nav li:hover>.dropdown{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="video.html">Video</a></li>
+                <li><a href="table.html">Table</a>
+                    <ul class="dropdown">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="video.html">Video</a></li>
+                        <li><a href="table.html">Table</a>
+                            <ul class="dropdown">
+                                <li><a href="index.html">Home</a></li>
+                                <li><a href="video.html">Video</a></li>
+                                <li><a href="table.html">Table</a></li>
+                                <li><a href="form.html">Form</a>
+                                    <ul class="dropdown">
+                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="video.html">Video</a></li>
+                                        <li><a href="table.html">Table</a></li>
+                                        <li><a href="form.html">Form</a></li>
+                                    </ul></li>
+                            </ul>
+                        </li>
+                        <li><a href="form.html">Form</a></li>
+                    </ul>
+                </li>
+                <li><a href="form.html">Form</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>গরুর রচনা</h1>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto enim optio, quibusdam saepe pariatur sed! Maxime quibusdam, quaerat pariatur laborum ipsum natus modi quod. Nobis dolore laudantium aperiam obcaecati fugit nulla voluptatum culpa quis animi, facere nesciunt quia enim accusantium. Dolorum ullam saepe porro laudantium a ab, doloribus, magnam commodi quaerat nobis modi eos harum provident tenetur voluptas quasi fugit veniam nesciunt eligendi odit! Quia aspernatur, animi harum voluptatibus doloribus error minima vitae nesciunt dignissimos illum deserunt tempora, accusamus aperiam odit inventore ullam amet fugit odio. Atque eos iure quod iusto dolores molestiae quia dolorem. Esse, tempore accusantium. Blanditiis aliquid officia, suscipit minima sequi perspiciatis magnam necessitatibus et laborum voluptatem commodi, hic sed explicabo, dicta aliquam consectetur. Eius hic neque iste consequatur minima deserunt omnis laboriosam animi id! Dolorum possimus recusandae labore, velit aspernatur voluptatem facilis ipsa enim quam animi ipsam voluptates aliquam magni expedita nisi illum debitis eius eveniet harum quia amet ratione. Minima sit, officiis quae nam similique nostrum. Nisi vel repellendus accusamus similique consectetur, numquam distinctio culpa dolore obcaecati exercitationem ex, eligendi aliquam nesciunt a, omnis magnam impedit sequi! Odio enim eos nulla, cum sapiente, dolore exercitationem quasi perferendis excepturi consequuntur autem officiis eveniet deleniti quo totam.</p>
+        </section>
+    </main>
+    <footer>&copy; 2024 Copyright Action programming hero</footer>
+    
+</body>
+</html>

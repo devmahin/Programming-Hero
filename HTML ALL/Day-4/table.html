@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            padding: 100px;
+        }
+        header>nav>ul{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        header>nav>ul>li{
+            list-style: none;
+        }
+        header>nav>ul>li>a{
+            text-decoration: none;
+            font-size: 20px;
+        }
+        caption{
+            text-align: center;
+        }
+        table{
+            border-collapse: collapse;
+            margin: auto;
+        }
+        td,th{
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="video.html">Video</a></li>
+                <li><a href="table.html">Table</a></li>
+                <li><a href="form.html">Form</a></li>
+            </ul>
+        </nav>
+    </header>
+    <table>
+        <caption>Salary Table</caption>
+        <thead>
+          <tr>
+            <th>Num</th>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Bill Gates</td>
+                <td>Microsoft</td>
+                <td>1000$</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Mahin Howlader</td>
+                <td>Google</td>
+                <td>5000$</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Antor Howlader</td>
+                <td>Youtube</td>
+                <td>1000$</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Bill Gates</td>
+                <td>Microsoft</td>
+                <td>1000$</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr><td colspan="3">Total Employee : 4</td></tr>
+        </tfoot>
+    </table>
+</body>
+</html>

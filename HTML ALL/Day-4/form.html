@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            padding: 100px;
+        }
+        header>nav>ul{
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        header>nav>ul>li{
+            list-style: none;
+        }
+        header>nav>ul>li>a{
+            text-decoration: none;
+            font-size: 20px;
+        }
+        label{
+            display: block;
+            margin-bottom: 10px;
+        }
+        form{
+            width: 400px;
+            margin: auto;
+            }
+    </style>
+   
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="video.html">Video</a></li>
+                <li><a href="table.html">Table</a></li>
+                <li><a href="form.html">Form</a></li>
+            </ul>
+        </nav>
+    </header>
+    <form>
+        <h2>Please fill up the form</h2>
+        <label>
+            Your name : <input type="text" placeholder="Your name">
+        </label>
+        <label>
+            Your name : <input type="text" placeholder="Your name">
+        </label>
+        <label>
+            Your name : <input type="text" placeholder="Your name">
+        </label>
+        <label>
+            Your name : <input type="text" placeholder="Your name">
+        </label>
+        <fieldset>
+            <legend>Pick one pitha</legend>
+            <label for="Chitoy">
+            <input name="pitha" id="Chitoy" type="radio">Chitoy
+            </label>
+            <label for="Vapa">
+            <input name="pitha" id="Vapa" type="radio">Vapa
+            </label>
+            <label for="Ruti-pitha">
+            <input name="pitha" id="Ruti-pitha" type="radio">Ruti pitha
+            </label>
+        </fieldset>
+        <fieldset>
+        <legend>Pick one or more vorta</legend>
+                <label for="Sorisa">
+                    <input type="checkbox" id="Sorisa" />Sorisa
+                </label>
+                <label for="Sutki">
+                    <input type="checkbox" id="Sutki" />Sutki
+                </label>
+                <label for="Chili">
+                    <input type="checkbox" id="Chili" />Chili
+                </label>
+        </fieldset>
+        <fieldset>
+            <textarea placeholder="details"></textarea>
+        </fieldset>
+        <input type="reset" value="Reset">
+        <input type="submit" value="submit">
+    </form>
+</body>
+</html>
