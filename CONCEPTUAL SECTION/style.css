@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Triangles&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: cursive;
+}
+#hero{
+    background-image: url("cow1.jpg");
+    height: 100vh;
+    background-size: cover;
+    clip-path: polygon(50% 0%, 100% 0, 100% 60%, 46% 100%, 46% 100%, 0% 60%, 0 0);
+    background-position: bottom center;
+}
+#hero h1{
+    color: #fff;
+    word-spacing: 10px;
+    letter-spacing: 10px;
+    font-weight: 200;
+    text-align: center;
+    padding-top: 70px;
+    font-size: 5rem;
+    font-family: 'Rubik Doodle Triangles', system-ui;
+}
+
+.artical{
+    width: 80%;
+    margin: 50px auto;
+    background-color: yellow;
+    padding: 20px;
+    border: 10px solid rgb(8, 0, 255);
+}
+
+.artical h2, .types-cow h2{
+    text-align: center;
+    text-transform: uppercase;
+    border-bottom: 2px solid rgb(255, 0, 21);
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.artical p{
+    font-size: 20px;
+    line-height: 1.5em;
+    text-align: justify;
+}
+.artical p .imp{
+    font-size: 1.5em;
+    color: blue;
+    background-color: blanchedalmond;
+}
+
+
+
+.types-cow{
+    width: 80%;
+    margin: 50px auto;
+}
+.types-cow div{
+    display: flex;
+    justify-content: space-between;
+
+}
+.types-cow div img{
+    width: 300px;
+    height: 350px;
+    object-fit: cover;
+
+}
