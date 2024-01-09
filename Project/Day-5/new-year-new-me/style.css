@@ -1,0 +1,173 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Work Sans', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: #FFF;
+}
+header{
+    background: url("images/banner/banner3.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 800px;
+
+}
+
+.header-text{
+    width: 45%;
+    text-align: right;
+    margin-left: auto;
+    padding: 10% 6% 0 0;
+}
+.header-text .header-des{
+    padding: 20px 0;
+}
+.header-title{
+    color: #FFF;
+text-align: right;
+font-size: 65px;
+font-weight: 700;
+}
+
+.header-des{
+    color: #FFF;
+text-align: right;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+}
+
+button{
+    border-radius: 5px;
+    background: #FFF;
+    color: #005FAC;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 30px;
+    border: none;
+}
+
+/* main */
+main{
+    width: 1140px;
+    margin: 0 auto;
+    /* background-color: red; */
+}
+
+
+
+/*===================== previous-year */
+.previous-year{
+    /* background-color: rebeccapurple; */
+    display: flex;
+    align-items: center;
+}
+.previous-img>img{
+    width: 451px;
+}
+.previous-img{
+ width: 50%;
+}
+    
+/* previous-text */
+.previous-text{
+    width: 35%;
+    /* margin-top: 50px; */
+}
+.previous-text>h2{
+    color: var(--Dark-01, #151414);
+    font-size: 40px;
+    font-weight: 700;
+}
+.previous-text>p{
+    color: var(--Dark-02, #444343);
+font-size: 16px;
+font-weight: 400;
+line-height: 26px; /* 162.5% */
+}
+.previous-text>ul>li{
+    color: var(--Dark-02, #444343);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 26px; /* 162.5% */
+}
+
+
+
+
+
+/* my-plans */
+.my-plans>h2{
+        text-align: center;
+        color: var(--Dark-01, #151414);
+        text-align: center;
+        font-size: 40px;
+        font-weight: 700;
+        margin: 50px 0;
+}
+
+.all-plans-icon{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    text-align: center;
+}
+.my-plans-icon>h3{
+            color: #151414;
+        text-align: center;
+        font-size: 30px;
+        font-weight: 700;
+    
+}
+.my-plans-icon>p{
+    color: var(--Dark-03, #737272);
+    text-align: center;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 10px 0;
+}
+
+
+
+
+
+
+
+
+/* clock-section */
+#clock-section{
+    position: relative;
+    margin: 50px 0;
+}
+
+.clock-sec-con{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.clock-text{
+    position: absolute;
+    top: 30%;
+    left: 10%;
+    width: 40%;
+} 
+
+
+
+.clock-text h3{
+    color: #FFF;
+    font-size: 40px;
+    font-weight: 700;
+}
+.clock-btn{
+    color: #005FAC;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 10px;
+}
