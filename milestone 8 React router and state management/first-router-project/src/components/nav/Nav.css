@@ -1,0 +1,7 @@
+a.active {
+    color: red;
+    /* text-decoration: underline; */
+    background-color: yellow;
+    padding: 5px;
+    transition: all 0.5s;
+  }
