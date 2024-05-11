@@ -19,7 +19,7 @@ function Createassignment() {
 
   return (
     <div>
-      <div className="mx-auto mt-8">
+      <div className="mx-auto my-10">
         <div className="w-full p-8 my-4 md:px-12 lg:w-full border-2 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] lg:pl-20 lg:pr-40 mr-auto rounded-2xl ">
           <div className="flex">
             <h1 className="font-bold uppercase text-xl md:text-3xl lg:text-5xl">
@@ -84,7 +84,7 @@ function Createassignment() {
             <div className="my-2 w-1/2 lg:w-1/4">
               <button
                 type="submit" // Add type attribute
-                className="uppercase text-sm font-bold tracking-wide bg-blue-900 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+                className="uppercase text-sm font-bold tracking-wide bg-blue-900 hover:bg-blue-950 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
               >
                 Send Message
               </button>

@@ -109,18 +109,6 @@ function Nav() {
           </li>
           <li>
             <NavLink
-             className={({ isActive }) =>
-              isActive
-                ? "text-black font-semibold hover:text-black"
-                : "text-gray-400 hover:text-black"
-            }
-              to="/createassinment"
-            >
-              Create Assignment
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
               className={({ isActive }) =>
                 isActive
                   ? "text-black font-semibold hover:text-black"
@@ -131,6 +119,19 @@ function Nav() {
               All Assignment
             </NavLink>
           </li>
+          <li>
+            <NavLink
+             className={({ isActive }) =>
+              isActive
+                ? "text-black font-semibold hover:text-black"
+                : "text-gray-400 hover:text-black"
+            }
+              to="/createassinment"
+            >
+              Create Assignment
+            </NavLink>
+          </li>
+    
 
           <li>
             <NavLink
