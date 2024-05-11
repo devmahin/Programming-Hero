@@ -22,7 +22,7 @@ function Allassignment() {
         </button>
       </div>
 
-      <div className="grid gap-5  grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         <div className=" bg-white border shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
