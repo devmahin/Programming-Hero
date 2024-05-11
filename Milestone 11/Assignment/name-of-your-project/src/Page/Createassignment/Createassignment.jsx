@@ -22,41 +22,40 @@ function Createassignment() {
       <div className="mx-auto my-10">
         <div className="w-full p-8 my-4 md:px-12 lg:w-full border-2 shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] lg:pl-20 lg:pr-40 mr-auto rounded-2xl ">
           <div className="flex">
-            <h1 className="font-bold uppercase text-xl md:text-3xl lg:text-5xl">
+            <h1 className="font-medium uppercase text-xl md:text-3xl lg:text-5xl">
               Create Assignment
             </h1>
           </div>
           <form onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 mt-5">
               <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                className="w-full bg-white border text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="text"
                 name="title" // Add name attribute
                 placeholder="Title"
               />
               <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                className="w-full bg-white border text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="text"
                 name="thumbnail" // Add name attribute
                 placeholder="Thumbnail Image URL*"
               />
               <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                className="w-full bg-white border text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="email"
                 name="email" // Add name attribute
                 placeholder="Email*"
               />
               <input
-                className="w-full bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                className="w-full bg-white border text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                 type="text"
                 name="marks" // Add name attribute
                 placeholder="Marks*"
               />
               <div className="w-full">
                 {/* DatePicker component */}
-
                 <DatePicker
-                  className="bg-gray-100  text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                  className="w-full bg-white border text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                 />
@@ -75,10 +74,10 @@ function Createassignment() {
               </div>
             </div>
             <div className="my-4">
-              <textarea 
+              <textarea
                 name="description" // Add name attribute
                 placeholder="Description*"
-                className="w-full h-32 bg-gray-100 text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
+                className="w-full h-32 bg-white border text-gray-900 mt-2 p-3 rounded-lg focus:outline-none focus:shadow-outline"
               ></textarea>
             </div>
             <div className="my-2 w-1/2 lg:w-1/4">

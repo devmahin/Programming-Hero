@@ -21,10 +21,9 @@
   font-style: normal;
 }
 
-.prompt-medium {
+.prompt-all {
   font-family: "Prompt", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+  font-weight: 300;
 }
 
 .prompt-semibold {

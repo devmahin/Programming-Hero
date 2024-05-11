@@ -4,10 +4,10 @@ import Footer from "../component/Footer";
 
 function Layout() {
   return (
-    <div>
-      <div className="container mx-auto">
+    <div className="bg-[#F5F5F5] prompt-all">
+      <div className="">
         <Nav></Nav>
-        <div className="min-h-[calc(100vh-284px)]">
+        <div className=" container mx-auto min-h-[calc(100vh-284px)] ">
           <Outlet></Outlet>
         </div>
       </div>

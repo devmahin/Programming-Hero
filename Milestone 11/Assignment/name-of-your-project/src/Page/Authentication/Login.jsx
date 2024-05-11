@@ -1,11 +1,56 @@
 import { Link } from "react-router-dom";
+import Authfun from "../../provider/Authfun";
+import toast from "react-hot-toast";
 
 function Login() {
+  const { signInWithGoogle, signIn, signInWithGithub } = Authfun();
+  // console.log(signInWithGoogle)
+  async function handelForm(e) {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    try {
+      await signIn(email, password);
+      toast.success("Successfully Login!");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handelGoogleLogin() {
+    console.log("click");
+    try {
+      await signInWithGoogle();
+      toast.success("Successfully Login!");
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  // async function handelGithub() {
+  //   try {
+  //     await signInWithGithub();
+  //     toast.success("Successfully Login!");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
+
+  const handelGithub = () => {
+    signInWithGithub()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
-      <div className="min-w-screen min-h-screen my-10 rounded-lg bg-gray-900 flex items-center justify-center px-5 py-5">
+      <div className=" my-10 rounded-lg  flex items-center justify-center px-5 py-5">
         <div
-          className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"
+          className="bg-gray-100 text-gray-500 border-2 rounded-3xl shadow-2xl w-full overflow-hidden"
           style={{ maxWidth: "1000px" }}
         >
           <div className="md:flex w-full">
@@ -26,7 +71,10 @@ function Login() {
 
               <div>
                 <div className="mb-3">
-                  <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md">
+                  <button
+                    onClick={() => handelGoogleLogin()}
+                    className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md"
+                  >
                     <img
                       className="w-5 mr-2"
                       src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
@@ -34,7 +82,10 @@ function Login() {
                     />
                     Sign in with Google
                   </button>
-                  <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md mt-2">
+                  <button
+                    onClick={() => handelGithub()}
+                    className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md mt-2"
+                  >
                     <img
                       className="w-5 mr-2"
                       src="https://i.ibb.co/M14nZ1p/github.png"
@@ -42,18 +93,10 @@ function Login() {
                     />
                     Sign in with GitHub
                   </button>
-
-                  <button className="flex flex-wrap justify-center w-full border border-gray-300 hover:border-gray-500 px-2 py-1.5 rounded-md mt-2">
-                    <img
-                      className="w-5 mr-2"
-                      src="https://i.ibb.co/ncLNtrr/facebook.png"
-                    />
-                    Sign in with Facebook
-                  </button>
                 </div>
               </div>
 
-              <div>
+              <form onSubmit={handelForm}>
                 <div className="flex -mx-3">
                   <div className="w-full  px-3 mb-5">
                     <label htmlFor="" className="text-xs font-semibold px-1">
@@ -92,31 +135,22 @@ function Login() {
                 </div>
                 <div className="flex -mx-3">
                   <div className="w-full px-3 mb-5">
-                    <button className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                    <button
+                      type="submit"
+                      className="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                    >
                       LOGIN
                     </button>
                   </div>
                 </div>
-              </div>
+              </form>
 
-              <div className="flex items-center">
-                <hr
-                  style={{
-                    borderTop: "1px solid #000",
-                    width: "100%",
-                    marginRight: "10px",
-                  }}
-                />
-                <p>OR</p>
-                <hr
-                  style={{
-                    borderTop: "1px solid #000",
-                    width: "100%",
-                    marginLeft: "10px",
-                  }}
-                />
-              </div>
-                <p className="text-center font-semibold">Don't have an account <Link className="text-blue-600 underline" to="/register">Register</Link></p>
+              <p className="text-center font-semibold">
+                Don't have an account{" "}
+                <Link className="text-blue-600 underline" to="/register">
+                  Register
+                </Link>
+              </p>
             </div>
           </div>
         </div>

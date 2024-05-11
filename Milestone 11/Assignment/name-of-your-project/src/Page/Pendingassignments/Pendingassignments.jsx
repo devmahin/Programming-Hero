@@ -1,10 +1,11 @@
 function Pendingassignments() {
   return (
-    <div className="my-10">
+    <div className="my-10 my-10 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
       <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
         <div className="flex justify-center">
-
-        <span className="text-3xl text-center mb-7 border-b-black  font-semibold uppercase border-b-2 pb-1">Pending assignments</span>
+          <span className="text-3xl text-center mb-7 border-b-black  font-semibold uppercase border-b-2 pb-1">
+            Pending assignments
+          </span>
         </div>
         <table className="min-w-full">
           <thead>
@@ -13,19 +14,13 @@ function Pendingassignments() {
                 Title
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                Status
-              </th>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                 Marks
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                Obtained Marks
+                Examinee
               </th>
               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                Feedback
-              </th>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                Details
+                Give mark
               </th>
             </tr>
           </thead>
@@ -37,27 +32,14 @@ function Pendingassignments() {
                 </div>
               </td>
               <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                <span className="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 bg-orange-200 opacity-50 rounded-full"
-                  ></span>
-                  <span className="relative text-xs">pending</span>
-                </span>
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
                 100
               </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                30
-              </td>
-
-              <td className="px-6 max-w-40 overflow-hidden  max-h-5 py-4 whitespace-no-wrap overflow-auto  border-b border-gray-500 text-blue-900 text-sm leading-5">
-                <p className="content">Well done! Keep up the lorem Lorem..</p>
+              <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
+                Mahin Howlader
               </td>
               <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
-                  Details
+                <button className="px-5 py-2 border-red-500 border text-red-500 rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none">
+                 Mark
                 </button>
               </td>
             </tr>
@@ -65,7 +47,7 @@ function Pendingassignments() {
           <tfoot></tfoot>
         </table>
         <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-          <div className="flex flex-1 justify-between sm:hidden">
+          <div className="flex flex-1  justify-between sm:hidden">
             <a
               href="#"
               className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
@@ -80,8 +62,8 @@ function Pendingassignments() {
             </a>
           </div>
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-            <div>
-              <p className="text-sm text-gray-700">
+            <div className="">
+              <p className="flex gap-x-1 text-sm text-gray-700">
                 Showing
                 <span className="font-medium">1</span>
                 to
@@ -133,7 +115,7 @@ function Pendingassignments() {
                 >
                   3
                 </a>
-            
+
                 <a
                   href="#"
                   className="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex"
