@@ -8,6 +8,7 @@ import Mysubmitted from "../Page/Mysubmitted/Mysubmitted";
 import Pendingassignments from "../Page/Pendingassignments/Pendingassignments";
 import Login from "../Page/Authentication/Login";
 import Registe from "../Page/Authentication/Registe";
+import Assignmentdetails from "../Page/Allassignment/Assignmentdetails";
 
 const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Registe></Registe>,
+      },
+      {
+        path: "/assignmentdetails/:id",
+        element: <Assignmentdetails></Assignmentdetails>,
       },
     ],
   },

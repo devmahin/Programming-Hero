@@ -4,14 +4,20 @@
       "title": "Full Stack Web Development",
       "marks": 120,
       "description": "Become proficient in both front-end and back-end web development with this comprehensive course.",
-      "level": "Medium"
+      "level": "Medium",
+      "bayer": {
+        "bayerEmail" : "mahinhowlader123@gamil.com"
+      }
     },
     {
       "thumbnail": "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/141216844/original/09ac6163fefe267d2ba12886cfbf592f547fcfca.jpg",
       "title": "Social Media Marketing",
       "marks": 150,
       "description": "Master strategies for leveraging social media platforms to promote businesses and engage with audiences.",
-      "level": "Hard"
+      "level": "Hard",
+      "bayer": {
+        "bayerEmail" : "mahinhowlader123@gamil.com"
+      }
     },
     {
       "thumbnail": "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/143104277/original/b29ab467e8f7ea623538d3816ab044267d33ec59.png",
@@ -32,14 +38,20 @@
       "title": "Adobe Photoshop Masterclass",
       "marks": 130,
       "description": "Unlock the full potential of Adobe Photoshop for photo editing, graphic design, and digital art.",
-      "level": "Medium"
+      "level": "Medium",
+      "bayer": {
+        "bayerEmail" : "mahinhowlader123@gamil.com"
+      }
     },
     {
         "thumbnail": "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/231374852/original/7d5a79a4970d7c37a75f912f822dc4132ea7b8a6.jpg",
       "title": "Introduction to Python",
       "marks": 100,
       "description": "Learn the fundamentals of Python programming language, including variables, data types, control flow, and functions.",
-      "level": "Easy"
+      "level": "Easy",
+      "bayer": {
+        "bayerEmail" : "mahinhowlader123@gamil.com"
+      }
     },
     {
         "thumbnail": "https://fiverr-res.cloudinary.com/t_gig_cards_web,q_auto,f_auto/gigs/231374852/original/7d5a79a4970d7c37a75f912f822dc4132ea7b8a6.jpg",
