@@ -1,4 +1,35 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Authfun from "../../provider/Authfun";
+
 function Pendingassignments() {
+  const { user } = Authfun();
+  const [detailsData, setDetailsData] = useState([]);
+  const [markassignment, setMarkAssignment] = useState({});
+  const getDataFun = async () => {
+    const { data } = await axios(
+      `http://localhost:3000/pendingsubmitted/${user?.email}`
+    );
+    setDetailsData(data);
+  };
+
+  useEffect(() => {
+    getDataFun();
+  }, [user?.email]);
+  // const { title, thumbnail, marks, level, description, bayer } =
+  //   detailsData || {};
+  async function sendmark(id) {
+    const { data } = await axios(`http://localhost:3000/markassignment/${id}`);
+    console.log(data, id);
+    setMarkAssignment(data);
+  }
+
+  const handelStatus = async (id, status) => {
+    const { data } = await axios.patch(
+      `http://localhost:3000/assignmentresult/${id}`,
+      { status }
+    );
+  };
   return (
     <div className="my-10 my-10 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
       <div className="align-middle inline-block min-w-full shadow overflow-hidden bg-white shadow-dashboard px-8 pt-3 rounded-bl-lg rounded-br-lg">
@@ -25,24 +56,101 @@ function Pendingassignments() {
             </tr>
           </thead>
           <tbody className="bg-white">
-            <tr>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                <div className="text-sm leading-5 text-blue-900">
-                  Damilare Anjorin
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                100
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                Mahin Howlader
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                <button className="px-5 py-2 border-red-500 border text-red-500 rounded transition duration-300 hover:bg-red-700 hover:text-white focus:outline-none">
-                 Mark
-                </button>
-              </td>
-            </tr>
+            {detailsData?.map((data) => (
+              <tr key={data._id}>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <div className="text-sm leading-5 text-blue-900">
+                    {data?.title}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
+                  {data?.marks}
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
+                  {data?.name}
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
+                  <div>
+                    {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                    <div className="mt-5">
+                      <button
+                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                        onClick={() => {
+                          document.getElementById("my_modal_3").showModal();
+                          sendmark(data?._id);
+                        }}
+                      >
+                        Mark
+                      </button>
+                      <dialog id="my_modal_3" className="modal">
+                        <div className="modal-box">
+                          <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+                              ✕
+                            </button>
+                          </form>
+                          <form
+                            onSubmit={() => handelStatus()}
+                            className="max-w-sm mx-auto"
+                          >
+                            <div className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                              <div className="flex">
+                                <p>Assignment Link = </p>
+                                <a
+                                  href=""
+                                  target="_blank"
+                                  className="text-blue-800"
+                                >
+                                  {markassignment?.link}
+                                </a>
+                              </div>
+                            </div>
+                            <div className="my-5">
+                              <label
+                                htmlFor="link"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Give assignment mark
+                              </label>
+                              <input
+                                type="number"
+                                id="link"
+                                name="marknum"
+                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="assignment mark"
+                                required
+                              />
+                            </div>
+                            <div className="mb-5">
+                              <label
+                                htmlFor="link"
+                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                              >
+                                Send Feedback
+                              </label>
+                              <textarea
+                                id="textarea"
+                                name="textarea"
+                                className="bg-gray-50 max-h-72 min-h-36 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-24 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                required
+                              />
+                            </div>
+
+                            <button
+                              type="submit"
+                              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            >
+                              Submit
+                            </button>
+                          </form>
+                        </div>
+                      </dialog>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
           <tfoot></tfoot>
         </table>

@@ -17,7 +17,7 @@ function Allassignment() {
     getalldata();
   }, []);
 
-  console.log(alldata);
+  // console.log(alldata);
 
   return (
     <div className="my-10">
@@ -93,7 +93,7 @@ function Allassignment() {
         </div> */}
         <div className="grid gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {alldata.map((data) => (
-            <Assignmentcard key={data._id} data={data}></Assignmentcard>
+            <Assignmentcard key={data._id} getalldata={getalldata} data={data}></Assignmentcard>
           ))}
         </div>
     </div>

@@ -9,6 +9,7 @@ import Pendingassignments from "../Page/Pendingassignments/Pendingassignments";
 import Login from "../Page/Authentication/Login";
 import Registe from "../Page/Authentication/Registe";
 import Assignmentdetails from "../Page/Allassignment/Assignmentdetails";
+import Updatepage from "../component/Updatepage";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
       {
         path: "/assignmentdetails/:id",
         element: <Assignmentdetails></Assignmentdetails>,
+      },
+      {
+        path: "/updatepage/:id",
+        element: <Updatepage></Updatepage>,
       },
     ],
   },

@@ -176,7 +176,7 @@ function Nav() {
         </div>
         <div className="ml-auto">
           {user ? (
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end z-40">
               <div
                 tabIndex={0}
                 role="button"

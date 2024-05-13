@@ -2,12 +2,44 @@ import { BiSolidEdit } from "react-icons/bi";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import Authfun from "../../provider/Authfun";
+import Swal from "sweetalert2";
+import axios from "axios";
 
-function Assignmentcard({ data }) {
-  const {_id, description, level, marks, thumbnail, title, bayer } = data || {};
+function Assignmentcard({ data, getalldata }) {
+  const { _id, description, level, marks, thumbnail, title, bayer } =
+    data || {};
   const { user } = Authfun();
-  console.log(user?.email);
-  console.log(bayer?.bayerEmail);
+  async function handeldelete(id) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const { data } = await axios.delete(
+            `http://localhost:3000/allproject/${id}`
+          );
+          //   console.log(data);
+          if (data.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your file has been deleted.",
+              icon: "success",
+            });
+            getalldata();
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    });
+  }
+
   return (
     <div>
       <div className=" bg-white border shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -39,10 +71,17 @@ function Assignmentcard({ data }) {
             >
               View Details
             </Link>
-            <div className="flex text-3xl gap-x-5">
-              <BiSolidEdit className="hover:text-green-600 cursor-pointer" />
-              <MdDelete className="hover:text-red-600 cursor-pointer" />
-            </div>
+            {user?.email == bayer?.bayerEmail && (
+              <div className="flex text-3xl gap-x-5">
+                <Link to={`/updatepage/${_id}`}> 
+                <BiSolidEdit className="hover:text-green-600 cursor-pointer" />
+                </Link>
+                <MdDelete
+                  onClick={() => handeldelete(_id)}
+                  className="hover:text-red-600 cursor-pointer"
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

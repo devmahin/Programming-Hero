@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import Authfun from "../../provider/Authfun";
 import toast from "react-hot-toast";
+import Authfun from "../../provider/Authfun";
 
 function Login() {
   const { signInWithGoogle, signIn, signInWithGithub } = Authfun();

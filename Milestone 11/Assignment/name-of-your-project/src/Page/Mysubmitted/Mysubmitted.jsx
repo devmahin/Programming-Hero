@@ -1,4 +1,21 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import Authfun from "../../provider/Authfun";
+
 function Mysubmitted() {
+  const { user } = Authfun();
+  const [detailsData, setDetailsData] = useState([]);
+  const getDataFun = async () => {
+    const { data } = await axios(
+      `http://localhost:3000/mysubmitted/${user?.email}`
+    );
+    setDetailsData(data);
+  };
+  useEffect(() => {
+    getDataFun();
+  }, [user?.email]);
+  console.log(detailsData);
   return (
     <div className="my-10 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
       <div className="align-middle rounded-tl-lg rounded-tr-lg inline-block w-full py-4 overflow-hidden bg-white shadow-lg px-12">
@@ -64,37 +81,38 @@ function Mysubmitted() {
             </tr>
           </thead>
           <tbody className="bg-white">
-            <tr>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
-                <div className="text-sm leading-5 text-blue-900">
-                  Damilare Anjorin
-                </div>
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                <span className="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
-                  <span
-                    aria-hidden
-                    className="absolute inset-0 bg-orange-200 opacity-50 rounded-full"
-                  ></span>
-                  <span className="relative text-xs">pending</span>
-                </span>
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
-                100
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                30
-              </td>
-
-              <td className="px-6 max-w-40 overflow-hidden  max-h-5 py-4 whitespace-no-wrap overflow-auto  border-b border-gray-500 text-blue-900 text-sm leading-5">
-                <p className="content">Well done! Keep up the lorem Lorem..</p>
-              </td>
-              <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
-                  Details
-                </button>
-              </td>
-            </tr>
+            {detailsData.map((data) => (
+              <tr key={data._id}>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                  <div className="text-sm leading-5 text-blue-900">
+                    {data?.title}
+                  </div>
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
+                  <span className="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
+                    <span
+                      aria-hidden
+                      className="absolute inset-0 bg-orange-200 opacity-50 rounded-full"
+                    ></span>
+                    <span className="relative text-xs"> {data?.status}</span>
+                  </span>
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
+                  {data?.marks}
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
+                  {data?.obtainedmarks}
+                </td>
+                <td className="px-6 max-w-40 overflow-hidden  max-h-5 py-4 whitespace-no-wrap overflow-auto  border-b border-gray-500 text-blue-900 text-sm leading-5">
+                  <p className="content">{data?.textarea}</p>
+                </td>
+                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
+                  <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
+                    Details
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
           <tfoot></tfoot>
         </table>

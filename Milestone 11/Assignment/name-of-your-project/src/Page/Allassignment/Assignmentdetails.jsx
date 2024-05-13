@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useNavigate, useParams } from "react-router-dom";
+import Authfun from "../../provider/Authfun";
 
 function Assignmentdetails() {
   const { id } = useParams();
+  const { user } = Authfun();
+  const navigate = useNavigate()
   const [detailsData, setDetailsData] = useState({});
   const getDataFun = async () => {
     const { data } = await axios(
@@ -11,25 +15,65 @@ function Assignmentdetails() {
     );
     setDetailsData(data);
   };
+
   useEffect(() => {
     getDataFun();
   }, [id]);
 
-  const {title} = detailsData()
+  const { title, thumbnail, marks, level, description, bayer } =
+    detailsData || {};
+  // title, assignment status, assignment marks, your
+  // obtained marks,
+  async function handelsubmitform(e) {
+    e.preventDefault();
+    const form = e.target;
+    if (user?.email === bayer?.bayerEmail) {
+      return toast.success("Permision not allow");
+    }
+    const link = e.target.link.value;
+    const name = e.target.name.value;
+    const textarea = e.target.textarea.value;
+    const status = "pending";
+    const email = user?.email;
+    const obtainedmarks = "procesing";
+     const submitInfo = { link, textarea, email,name, title, marks, status, bayer,obtainedmarks };
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3000/bidassignment",
+        submitInfo
+      );
+      console.log(data);
+      if (data.acknowledged) {
+        toast.success("Submit success");
+        
+        form.reset();
+        navigate("/mysubmitted");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   return (
     <div>
-      <div className="dark:bg-gray-100 dark:text-gray-800">
+      <div className="dark:bg-gray-100 shadow-2xl rounded-lg my-10 dark:text-gray-800">
         <div className="container max-w-4xl px-10 py-6 mx-auto rounded-lg shadow-sm dark:bg-gray-50">
-          <div className="flex items-center justify-between">
+          <div className="">
             <span className="text-sm dark:text-gray-600">Jun 1, 2020</span>
-            <a
-              rel="noopener noreferrer"
-              href="#"
-              className="px-2 py-1 font-bold rounded dark:bg-violet-600 dark:text-gray-50"
-            >
-              Javascript
-            </a>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-sm dark:text-gray-600">Level : {level}</span>
+            <span className="text-sm dark:text-gray-600 text-xl font-semibold">
+              Marks : {marks}
+            </span>
+          </div>
+          <div className="w-full ">
+            <img
+              className="w-full md:h-[300px] lg:h-[400px]  rounded-md"
+              src={thumbnail}
+              alt=""
+            />
           </div>
           <div className="mt-3">
             <a
@@ -37,14 +81,9 @@ function Assignmentdetails() {
               href="#"
               className="text-2xl font-bold hover:underline"
             >
-              Nos creasse pendere crescit angelos etc
+              {title}
             </a>
-            <p className="mt-2">
-              Tamquam ita veritas res equidem. Ea in ad expertus paulatim
-              poterunt. Imo volo aspi novi tur. Ferre hic neque vulgo hae athei
-              spero. Tantumdem naturales excaecant notaverim etc cau perfacile
-              occurrere. Loco visa to du huic at in dixi aër.
-            </p>
+            <p className="mt-2">{description}</p>
           </div>
           <div className="mt-5">
             <button
@@ -61,7 +100,23 @@ function Assignmentdetails() {
                     ✕
                   </button>
                 </form>
-                <form className="max-w-sm mx-auto">
+                <form onSubmit={handelsubmitform} className="max-w-sm mx-auto">
+                  <div className="mb-5">
+                    <label
+                      htmlFor="name"
+                      className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Your name
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                      placeholder="Your name"
+                      required
+                    />
+                  </div>
                   <div className="mb-5">
                     <label
                       htmlFor="link"
@@ -72,6 +127,7 @@ function Assignmentdetails() {
                     <input
                       type="text"
                       id="link"
+                      name="link"
                       className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       placeholder="pdf/live link"
                       required
@@ -86,6 +142,7 @@ function Assignmentdetails() {
                     </label>
                     <textarea
                       id="textarea"
+                      name="textarea"
                       className="bg-gray-50 max-h-72 min-h-36 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 h-24 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                       required
                     />
