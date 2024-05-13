@@ -1,9 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import Authfun from "../../provider/Authfun";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Pendingassignments() {
+  
   const { user } = Authfun();
+  const navigate = useNavigate()
   const [detailsData, setDetailsData] = useState([]);
   const [markassignment, setMarkAssignment] = useState({});
   const getDataFun = async () => {
@@ -24,11 +28,31 @@ function Pendingassignments() {
     setMarkAssignment(data);
   }
 
-  const handelStatus = async (id, status) => {
-    const { data } = await axios.patch(
-      `http://localhost:3000/assignmentresult/${id}`,
-      { status }
-    );
+  const handelStatus = async (e, id) => {
+    e.preventDefault();
+    const marknum = e.target.marknum.value;
+    const textarea = e.target.textarea.value;
+    const marksResult = parseFloat(marknum);
+
+    const updateAssignment = {
+      status: "completed",
+      obtainedmarks: marksResult,
+      textarea,
+    };
+
+    try {
+      const { data } = await axios.patch(
+        `http://localhost:3000/assignmentresult/${id}`,
+        updateAssignment
+      );
+      console.log(data);
+      if(data.modifiedCount){
+        toast.success("Success result submit")
+        navigate("/mysubmitted")
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className="my-10 my-10 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
@@ -80,7 +104,7 @@ function Pendingassignments() {
                           sendmark(data?._id);
                         }}
                       >
-                        Mark
+                        {`${data?.status === "pending" ? "Mark" : "Replace"}`}
                       </button>
                       <dialog id="my_modal_3" className="modal">
                         <div className="modal-box">
@@ -91,19 +115,23 @@ function Pendingassignments() {
                             </button>
                           </form>
                           <form
-                            onSubmit={() => handelStatus()}
+                            onSubmit={(e) =>
+                              handelStatus(e, markassignment?._id)
+                            }
                             className="max-w-sm mx-auto"
                           >
                             <div className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                               <div className="flex">
-                                <p>Assignment Link = </p>
-                                <a
-                                  href=""
-                                  target="_blank"
-                                  className="text-blue-800"
-                                >
-                                  {markassignment?.link}
-                                </a>
+                                <p>
+                                  Assignment Link ={" "}
+                                  <a
+                                    href={markassignment.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    {markassignment.link}
+                                  </a>{" "}
+                                </p>
                               </div>
                             </div>
                             <div className="my-5">

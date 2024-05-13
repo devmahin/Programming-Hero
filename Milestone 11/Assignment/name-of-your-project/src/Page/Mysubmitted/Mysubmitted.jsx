@@ -75,9 +75,7 @@ function Mysubmitted() {
               <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
                 Feedback
               </th>
-              <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">
-                Details
-              </th>
+           
             </tr>
           </thead>
           <tbody className="bg-white">
@@ -92,7 +90,14 @@ function Mysubmitted() {
                   <span className="relative inline-block px-3 py-1 font-semibold text-orange-900 leading-tight">
                     <span
                       aria-hidden
-                      className="absolute inset-0 bg-orange-200 opacity-50 rounded-full"
+                      // className={`px-3 py-1   text-xs  rounded-full`}
+                      className={`absolute inset-0 ${
+                        data.status === "completed" &&
+                        "text-green-600 bg-emerald-200"
+                      } ${
+                        data.status === "pending" &&
+                        "text-pink-500 bg-pink-300/60"
+                      } opacity-50 rounded-full`}
                     ></span>
                     <span className="relative text-xs"> {data?.status}</span>
                   </span>
@@ -100,17 +105,20 @@ function Mysubmitted() {
                 <td className="px-6 py-4 whitespace-no-wrap border-b text-blue-900 border-gray-500 text-sm leading-5">
                   {data?.marks}
                 </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
+
+                <td
+                  className={`px-6 py-4 border-b border-gray-500   text-green-700  text-sm leading-5 `}
+                >
+                  <span className={`p-2 rounded-full ${
+                    data.status === "pending" && "text-pink-500 bg-pink-300/60"
+                  }`}>
                   {data?.obtainedmarks}
+                  </span>
                 </td>
                 <td className="px-6 max-w-40 overflow-hidden  max-h-5 py-4 whitespace-no-wrap overflow-auto  border-b border-gray-500 text-blue-900 text-sm leading-5">
                   <p className="content">{data?.textarea}</p>
                 </td>
-                <td className="px-6 py-4 whitespace-no-wrap border-b border-gray-500 text-blue-900 text-sm leading-5">
-                  <button className="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none">
-                    Details
-                  </button>
-                </td>
+            
               </tr>
             ))}
           </tbody>
