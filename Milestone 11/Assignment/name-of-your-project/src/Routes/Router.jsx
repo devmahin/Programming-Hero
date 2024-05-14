@@ -10,6 +10,7 @@ import Login from "../Page/Authentication/Login";
 import Registe from "../Page/Authentication/Registe";
 import Assignmentdetails from "../Page/Allassignment/Assignmentdetails";
 import Updatepage from "../component/Updatepage";
+import Privaterouter from "./Privaterouter";
 
 const router = createBrowserRouter([
   {
@@ -27,15 +28,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/createassinment",
-        element: <Createassignment></Createassignment>,
+        element: <Privaterouter><Createassignment></Createassignment></Privaterouter>,
       },
       {
         path: "/mysubmitted",
-        element: <Mysubmitted></Mysubmitted>,
+        element: <Privaterouter><Mysubmitted></Mysubmitted></Privaterouter>,
       },
       {
         path: "/pending",
-        element: <Pendingassignments></Pendingassignments>,
+        element: (
+          <Privaterouter>
+            <Pendingassignments></Pendingassignments>
+          </Privaterouter>
+        ),
       },
       {
         path: "/login",
@@ -47,11 +52,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/assignmentdetails/:id",
-        element: <Assignmentdetails></Assignmentdetails>,
+        element: <Privaterouter>
+          <Assignmentdetails></Assignmentdetails>
+          </Privaterouter>,
       },
       {
         path: "/updatepage/:id",
-        element: <Updatepage></Updatepage>,
+        element: <Privaterouter><Updatepage></Updatepage></Privaterouter>,
       },
     ],
   },

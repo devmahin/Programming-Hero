@@ -92,10 +92,10 @@ function Mysubmitted() {
                       aria-hidden
                       // className={`px-3 py-1   text-xs  rounded-full`}
                       className={`absolute inset-0 ${
-                        data.status === "completed" &&
+                        (data.status).toLowerCase() === "completed" &&
                         "text-green-600 bg-emerald-200"
                       } ${
-                        data.status === "pending" &&
+                        (data.status).toLowerCase() === "pending" &&
                         "text-pink-500 bg-pink-300/60"
                       } opacity-50 rounded-full`}
                     ></span>

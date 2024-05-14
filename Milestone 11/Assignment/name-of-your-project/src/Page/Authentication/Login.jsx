@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import Authfun from "../../provider/Authfun";
 
 function Login() {
   const { signInWithGoogle, signIn, signInWithGithub } = Authfun();
+  const location = useLocation()
+  const navigate = useNavigate()
+    console.log(location)
   // console.log(signInWithGoogle)
   async function handelForm(e) {
     e.preventDefault();
@@ -12,6 +15,7 @@ function Login() {
     try {
       await signIn(email, password);
       toast.success("Successfully Login!");
+      navigate(location?.state || "/") 
     } catch (err) {
       console.log(err);
     }
@@ -22,6 +26,7 @@ function Login() {
     try {
       await signInWithGoogle();
       toast.success("Successfully Login!");
+      navigate(location?.state || "/") 
     } catch (err) {
       console.log(err);
     }

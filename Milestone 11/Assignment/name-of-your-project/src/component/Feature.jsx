@@ -1,4 +1,21 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import Feturescard from "./Feturescard";
+
 function Feature() {
+  const [alldata, setAllData] = useState([]);
+  const getalldata = async () => {
+    const { data } = await axios(
+      `http://localhost:3000/allproject`
+    );
+    setAllData(data);
+    console.log(data);
+  };
+
+  useEffect(() => {
+    getalldata();
+  }, []);
+
   return (
     <section className="py-12  rounded-xl text-black sm:py-12 lg:py-16">
       <div className=" mx-auto">
@@ -12,83 +29,15 @@ function Feature() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 mx-auto  text-center gap-y-4 sm:gap-x-8 sm:grid-cols-2 lg:grid-cols-3 sm:mt-12 lg:mt-16 sm:text-left">
-          {/* Realtime Collaboration */}
-            {/* Background Gradient */}
-            <div className="relative overflow-hidden border-2 bg-white shadow-md rounded-xl h-full">
-              <div className="p-9">
-                <h3 className="mt-6 text-2xl font-bold  text-gray-900 sm:mt-10">
-                  Realtime Collaboration
-                </h3>
-                <p className="mt-6 text-base text-gray-600">
-                  Collaborate in realtime with other editors in a project. See
-                  what other editors are doing and edit even a simple text
-                  together
-                </p>
-              </div>
-            </div>
-            <div className="relative overflow-hidden border-2 bg-white shadow-md rounded-xl h-full">
-              <div className="p-9">
-                <h3 className="mt-6 text-2xl font-bold  text-gray-900 sm:mt-10">
-                  Realtime Collaboration
-                </h3>
-                <p className="mt-6 text-base text-gray-600">
-                  Collaborate in realtime with other editors in a project. See
-                  what other editors are doing and edit even a simple text
-                  together
-                </p>
-              </div>
-            </div>
-            <div className="relative overflow-hidden border-2 bg-white shadow-md rounded-xl h-full">
-              <div className="p-9">
-                <h3 className="mt-6 text-2xl font-bold  text-gray-900 sm:mt-10">
-                  Realtime Collaboration
-                </h3>
-                <p className="mt-6 text-base text-gray-600">
-                  Collaborate in realtime with other editors in a project. See
-                  what other editors are doing and edit even a simple text
-                  together
-                </p>
-              </div>
-            </div>
-            <div className="relative overflow-hidden border-2 bg-white shadow-md rounded-xl h-full">
-              <div className="p-9">
-                <h3 className="mt-6 text-2xl font-bold  text-gray-900 sm:mt-10">
-                  Realtime Collaboration
-                </h3>
-                <p className="mt-6 text-base text-gray-600">
-                  Collaborate in realtime with other editors in a project. See
-                  what other editors are doing and edit even a simple text
-                  together
-                </p>
-              </div>
-            </div>
-            <div className="relative overflow-hidden border-2 bg-white shadow-md rounded-xl h-full">
-              <div className="p-9">
-                <h3 className="mt-6 text-2xl font-bold  text-gray-900 sm:mt-10">
-                  Realtime Collaboration
-                </h3>
-                <p className="mt-6 text-base text-gray-600">
-                  Collaborate in realtime with other editors in a project. See
-                  what other editors are doing and edit even a simple text
-                  together
-                </p>
-              </div>
-            </div>
-            <div className="relative overflow-hidden border-2 bg-white shadow-md rounded-xl h-full">
-              <div className="p-9">
-                <h3 className="mt-6 text-2xl font-bold  text-gray-900 sm:mt-10">
-                  Realtime Collaboration
-                </h3>
-                <p className="mt-6 text-base text-gray-600">
-                  Collaborate in realtime with other editors in a project. See
-                  what other editors are doing and edit even a simple text
-                  together
-                </p>
-              </div>
-            </div>
-          {/* Other features follow the same structure */}
-        </div>
+        <div className="grid gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {alldata.slice(0,5).map((data) => (
+          <Feturescard
+            key={data._id}
+            getalldata={getalldata}
+            data={data}
+          ></Feturescard>
+        ))}
+      </div>
       </div>
     </section>
   );

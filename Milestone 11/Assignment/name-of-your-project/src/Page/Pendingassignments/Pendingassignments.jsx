@@ -34,6 +34,9 @@ function Pendingassignments() {
     const textarea = e.target.textarea.value;
     const marksResult = parseFloat(marknum);
 
+    if(markassignment.marks > marknum){
+      return toast.error(`subject max number ${markassignment.marks}`)
+    }
     const updateAssignment = {
       status: "completed",
       obtainedmarks: marksResult,
@@ -48,7 +51,8 @@ function Pendingassignments() {
       console.log(data);
       if(data.modifiedCount){
         toast.success("Success result submit")
-        navigate("/mysubmitted")
+        // navigate("/mysubmitted")
+        document.getElementById("my_modal_3").close();
       }
     } catch (err) {
       console.log(err);
@@ -121,10 +125,11 @@ function Pendingassignments() {
                             className="max-w-sm mx-auto"
                           >
                             <div className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                              <div className="flex">
+                              <div className="h-full overflow-hidden">
                                 <p>
                                   Assignment Link ={" "}
                                   <a
+                                  className="text-blue-800"
                                     href={markassignment.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -139,7 +144,7 @@ function Pendingassignments() {
                                 htmlFor="link"
                                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                               >
-                                Give assignment mark
+                                Give assignment mark || Subject Mark <span className="text-green-600">{markassignment.marks}</span>
                               </label>
                               <input
                                 type="number"

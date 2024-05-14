@@ -1,45 +1,46 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { BiSolidEdit } from "react-icons/bi";
-import { MdDelete } from "react-icons/md";
-import { Link } from "react-router-dom";
 import Assignmentcard from "./Assignmentcard";
 function Allassignment() {
   const [alldata, setAllData] = useState([]);
-
+  const [filter, setFilter] = useState("");
   const getalldata = async () => {
-    const { data } = await axios("http://localhost:3000/allproject");
+    const { data } = await axios(
+      `http://localhost:3000/allproject?filter=${filter}`
+    );
     setAllData(data);
     console.log(data);
   };
 
   useEffect(() => {
     getalldata();
-  }, []);
+  }, [filter]);
+  
+  // if(alldata<=0) return <h1 className="text-center pt-20">Data is not availabel</h1>
 
   // console.log(alldata);
-
   return (
     <div className="my-10">
       <div className="flex items-center gap-x-4 justify-end mb-5">
         <div className=" w-2/6">
           <select
             id="countries"
+            onChange={(e) => setFilter(e.target.value)}
+            value={filter}
             name="difficulty" // Add name attribute
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
             <option value="">Choose Assignment Difficulty Level</option>
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
           </select>
         </div>
         <button className="btn bg-blue-700 font-semibold hover:bg-red-700 text-white">
           Reset
         </button>
       </div>
-
-        {/* <div className=" bg-white border shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+      {/* <div className=" bg-white border shadow-[0px_4px_16px_rgba(17,17,26,0.1),_0px_8px_24px_rgba(17,17,26,0.1),_0px_16px_56px_rgba(17,17,26,0.1)] border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
           <a href="#">
             <img
               className="rounded-t-lg"
@@ -91,11 +92,15 @@ function Allassignment() {
             </div>
           </div>
         </div> */}
-        <div className="grid gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {alldata.map((data) => (
-            <Assignmentcard key={data._id} getalldata={getalldata} data={data}></Assignmentcard>
-          ))}
-        </div>
+      <div className="grid gap-10  grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {alldata.map((data) => (
+          <Assignmentcard
+            key={data._id}
+            getalldata={getalldata}
+            data={data}
+          ></Assignmentcard>
+        ))}
+      </div>
     </div>
   );
 }

@@ -1,13 +1,78 @@
+import { NavLink } from "react-router-dom";
+
 function Footer() {
   return (
     <div className="bg-neutral ">
       <footer className="footer p-10  text-neutral-content container mx-auto">
         <nav>
-          <h6 className="footer-title">Services</h6>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+        <a className=" logo_font text-nowrap  md:text-2xl border-b-black border-b-2">
+            <span className="text-blue-700">Freelance</span> Frontier
+          </a>
+          
+          <ul className="menu-horizontal flex-col gap-x-6">
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white  font-semibold hover:text-black"
+                    : "text-gray-400 hover:text-black"
+                }
+                to="/"
+              >
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-semibold hover:text-white"
+                    : "text-gray-400 hover:text-white"
+                }
+                to="/allassignment"
+              >
+                All Assignment
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-semibold hover:text-white"
+                    : "text-gray-400 hover:text-white"
+                }
+                to="/createassinment"
+              >
+                Create Assignment
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-semibold hover:text-white"
+                    : "text-gray-400 hover:text-white"
+                }
+                to="/mysubmitted"
+              >
+                Submitted
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-white font-semibold hover:text-white"
+                    : "text-gray-400 hover:text-white"
+                }
+                to="/pending"
+              >
+                Pending
+              </NavLink>
+            </li>
+          </ul>
         </nav>
         <nav>
           <h6 className="footer-title">Company</h6>

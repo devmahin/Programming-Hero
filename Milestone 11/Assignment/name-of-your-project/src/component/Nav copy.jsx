@@ -4,12 +4,12 @@ import toast from "react-hot-toast";
 
 function Nav() {
   const { user, logOut } = Authfun();
-  const navigate = useNavigate();
+  const navigate = useNavigate()
   async function handelLogout() {
     try {
       await logOut();
-      toast.success("Logout success");
-      navigate("/");
+      toast.success("Logout success")
+      navigate("/")
     } catch (err) {
       console.log(err);
     }
@@ -104,49 +104,14 @@ function Nav() {
               </li>
             </ul>
           </div>
-          <Link to="/" className=" logo_font text-nowrap  md:text-2xl border-b-black border-b-2">
+          <a className=" logo_font text-nowrap  md:text-2xl border-b-black border-b-2">
             <span className="text-blue-700">Freelance</span> Frontier
-          </Link>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu-horizontal gap-x-6">
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-black font-semibold hover:text-black"
-                    : "text-gray-400 hover:text-black"
-                }
-                to="/allassignment"
-              >
-                All Assignment
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-black font-semibold hover:text-black"
-                    : "text-gray-400 hover:text-black"
-                }
-                to="/createassinment"
-              >
-                Create Assignment
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-black font-semibold hover:text-black"
-                    : "text-gray-400 hover:text-black"
-                }
-                to="/pending"
-              >
-                Pending Assignment
-              </NavLink>
-            </li>
-          </ul>
+        <a className=" logo_font text-nowrap  md:text-2xl border-b-black border-b-2">
+            <span className="text-blue-700">Freelance</span> Frontier
+          </a>
         </div>
         <div className="ml-auto">
           {user ? (
@@ -172,14 +137,6 @@ function Nav() {
                     Profile
                     <span className="badge">New</span>
                   </a>
-                </li>
-                <li>
-                  <NavLink
-                
-                    to="/mysubmitted"
-                  >
-                    My submitted
-                  </NavLink>
                 </li>
                 <li>
                   <Link onClick={handelLogout}>Logout</Link>
