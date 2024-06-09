@@ -30,8 +30,32 @@ app.use(express.json())
 
 async function run() {
     const apartmentCollection = client.db("BUILDING_MANAGEMENT").collection("apartment");
+    const usersCollection = client.db("BUILDING_MANAGEMENT").collection("user");
     const agreementCollection = client.db("BUILDING_MANAGEMENT").collection("agreement");
+
     try {
+        // agreement data 
+        app.post("/user", async (req, res) => {
+            const data = req.body;
+            const email = data.email;
+            const query = { email: email }
+            const resultQuery = await usersCollection.findOne(query)
+            if (resultQuery) {
+                return res.send(resultQuery)
+            }
+            const result = await usersCollection.insertOne(data)
+            res.send(result)
+        })
+
+
+        app.get("/user/:email", async (req, res) => {
+            const email = req.params.email;
+            console.log(email)
+            const query = { email: email };
+            const result = await usersCollection.findOne(query)
+            res.send(result)
+        })
+
         // apartment data ?
         app.get("/apartment", async (req, res) => {
             const result = await apartmentCollection.find().toArray()
@@ -44,6 +68,15 @@ async function run() {
             const result = await agreementCollection.insertOne(data)
             res.send(result)
         })
+
+        // agreement get 
+        app.get("/agreement/:email", async (req, res) => {
+            const data = req.body;
+            const result = await agreementCollection.insertOne(data)
+            res.send(result)
+        })
+
+
 
         // Connect the client to the server	(optional starting in v4.7)
         // Send a ping to confirm a successful connection
