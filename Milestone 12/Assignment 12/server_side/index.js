@@ -50,7 +50,6 @@ async function run() {
 
         app.get("/user/:email", async (req, res) => {
             const email = req.params.email;
-            console.log(email)
             const query = { email: email };
             const result = await usersCollection.findOne(query)
             res.send(result)
@@ -65,14 +64,24 @@ async function run() {
         // agreement data 
         app.post("/agreement", async (req, res) => {
             const data = req.body;
-            const result = await agreementCollection.insertOne(data)
-            res.send(result)
+            const email = { userEmail: data?.userEmail };
+            console.log(email)
+            const alredyExist = await agreementCollection.findOne(email)
+            if (alredyExist) {
+                return res.send({ message: "User alredy exist" })
+            } else {
+                const result = await agreementCollection.insertOne(data)
+                res.send(result)
+            }
         })
+
 
         // agreement get 
         app.get("/agreement/:email", async (req, res) => {
-            const data = req.body;
-            const result = await agreementCollection.insertOne(data)
+            const email = req.params.email;
+            console.log("agrement", email)
+            const query = { userEmail: email };
+            const result = await agreementCollection.findOne(query)
             res.send(result)
         })
 
