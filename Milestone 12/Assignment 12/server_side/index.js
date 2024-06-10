@@ -32,6 +32,7 @@ async function run() {
     const apartmentCollection = client.db("BUILDING_MANAGEMENT").collection("apartment");
     const usersCollection = client.db("BUILDING_MANAGEMENT").collection("user");
     const agreementCollection = client.db("BUILDING_MANAGEMENT").collection("agreement");
+    const announcemenCollection = client.db("BUILDING_MANAGEMENT").collection("announcemen");
 
     try {
         // agreement data 
@@ -79,12 +80,28 @@ async function run() {
         // agreement get 
         app.get("/agreement/:email", async (req, res) => {
             const email = req.params.email;
-            console.log("agrement", email)
+            // console.log("agrement", email)
             const query = { userEmail: email };
             const result = await agreementCollection.findOne(query)
             res.send(result)
         })
 
+
+
+
+        // admin 
+        app.get("/member", async (req,res) => {
+            const query = {role : "member"}
+            const result = await usersCollection.find(query).toArray()
+            res.send(result)
+        })
+
+        // Announcemen
+        app.post("/announcemen", async (req,res) => {
+            const data = req.body;
+            const result = await announcemenCollection.insertOne(data);
+            res.send(result);
+        })
 
 
         // Connect the client to the server	(optional starting in v4.7)
