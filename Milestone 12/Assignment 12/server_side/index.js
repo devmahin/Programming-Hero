@@ -11,7 +11,7 @@ const corsOptions = {
     credentials: true,
     optionSuccessStatus: 200,
 }
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.USER_NAME}:${process.env.USER_PASSWORD}@cluster0.iagloem.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
 
@@ -47,10 +47,22 @@ async function run() {
             const result = await usersCollection.insertOne(data)
             res.send(result)
         })
+        app.patch("/changerole/:email", async (req, res) => {
+            const email = req.params.email;
+            const role = req.body.role;
+            const query = { email: email }
+            const updateDoc = {
+                $set: {
+                    role: role
+                },
+            };
+            const result = await usersCollection.updateOne(query, updateDoc);
+            res.send(result)
+        })
 
 
         app.get("/user/:email", async (req, res) => {
-            const email = req.params.email;
+            const email = req.params?.email;
             const query = { email: email };
             const result = await usersCollection.findOne(query)
             res.send(result)
@@ -77,32 +89,91 @@ async function run() {
         })
 
 
-        // agreement get 
+        // agreement
+        app.get("/agreement", async (req, res) => {
+            const result = await agreementCollection.find().toArray()
+            res.send(result)
+        })
+        // profile agreement 
         app.get("/agreement/:email", async (req, res) => {
-            const email = req.params.email;
-            // console.log("agrement", email)
-            const query = { userEmail: email };
+            const email = req.params?.email;
+            const query = { userEmail: email }
             const result = await agreementCollection.findOne(query)
             res.send(result)
         })
+
+        app.delete("/changerole/:email", async (req, res) => {
+            const email = req.params.email;
+            const query = { userEmail: email }
+            const result = await agreementCollection.deleteOne(query)
+            res.send(result)
+        })
+
+
+        // agreement get 
+        app.delete("/agrementdelete/:email", async (req, res) => {
+            const email = req.params.email;
+            // console.log("agrement", email)
+            const query = { userEmail: email };
+            const result = await agreementCollection.deleteOne(query)
+            res.send(result)
+        })
+        //agrementstatus
+        app.patch("/agrementstatus/:email", async (req, res) => {
+            const email = req.params.email;
+            // console.log("agrement", email)
+            const query = { userEmail: email };
+            const status = req.body.status;
+            const updateDoc = {
+                $set: {
+                    status: status,
+                },
+            };
+            const result = await agreementCollection.updateOne(query, updateDoc)
+            res.send(result)
+        })
+
+        // app.patch("/rejectstatus/:id", async (req, res) => {
+        //     const id = req.params.id;
+        //     const query = { _id: new ObjectId(id) };
+        //     const status = req.body.status;
+        //     const updateDoc = {
+        //         $set: {
+        //             status: status,
+        //         },
+        //     };
+        //     const result = await agreementCollection.updateOne(query, updateDoc)
+        //     res.send(result)
+        // })
 
 
 
 
         // admin 
-        app.get("/member", async (req,res) => {
-            const query = {role : "member"}
+        app.get("/member", async (req, res) => {
+            const query = { role: "member" }
             const result = await usersCollection.find(query).toArray()
+
+            res.send(result)
+        })
+        app.patch("/rolechange/:email", async (req, res) => {
+            const email = req.params.email;
+            const query = { email: email };
+            const updateDoc = {
+                $set: {
+                    role: "user",
+                },
+            };
+            const result = await usersCollection.updateOne(query, updateDoc)
             res.send(result)
         })
 
         // Announcemen
-        app.post("/announcemen", async (req,res) => {
+        app.post("/announcemen", async (req, res) => {
             const data = req.body;
             const result = await announcemenCollection.insertOne(data);
             res.send(result);
         })
-
 
         // Connect the client to the server	(optional starting in v4.7)
         // Send a ping to confirm a successful connection
