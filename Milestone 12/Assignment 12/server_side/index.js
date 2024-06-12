@@ -33,6 +33,7 @@ async function run() {
     const usersCollection = client.db("BUILDING_MANAGEMENT").collection("user");
     const agreementCollection = client.db("BUILDING_MANAGEMENT").collection("agreement");
     const announcemenCollection = client.db("BUILDING_MANAGEMENT").collection("announcemen");
+    const couponCodeCollection = client.db("BUILDING_MANAGEMENT").collection("coupon");
 
     try {
         // agreement data 
@@ -91,7 +92,8 @@ async function run() {
 
         // agreement
         app.get("/agreement", async (req, res) => {
-            const result = await agreementCollection.find().toArray()
+            const query = {status : "Pending"}
+            const result = await agreementCollection.find(query).toArray()
             res.send(result)
         })
         // profile agreement 
@@ -153,9 +155,9 @@ async function run() {
         app.get("/member", async (req, res) => {
             const query = { role: "member" }
             const result = await usersCollection.find(query).toArray()
-
             res.send(result)
         })
+        
         app.patch("/rolechange/:email", async (req, res) => {
             const email = req.params.email;
             const query = { email: email };
@@ -174,6 +176,21 @@ async function run() {
             const result = await announcemenCollection.insertOne(data);
             res.send(result);
         })
+
+        // couponCodeCollection
+        app.post("/coupon", async (req,res) => {
+            const data = req.body;
+            const result  = await couponCodeCollection.insertOne(data)
+            res.send(result)
+        })
+
+
+
+
+
+
+
+
 
         // Connect the client to the server	(optional starting in v4.7)
         // Send a ping to confirm a successful connection
